@@ -20,7 +20,7 @@ export default function LoginPage() {
         <div className="login-page">
             <div className="login-container">
                 <div className="login-logo">
-                    <div className="login-logo-icon">AXA</div>
+                    <img className="login-logo-icon" src="/axa-logo.png" alt="AXA" />
                     <h1>AXA People</h1>
                     <p>Mitarbeiter-Evaluation & Entwicklung</p>
                 </div>

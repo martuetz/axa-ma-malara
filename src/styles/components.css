@@ -491,17 +491,9 @@
 }
 
 .login-logo-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--axa-red);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: white;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     margin: 0 auto var(--space-md)
 }
 

@@ -48,7 +48,7 @@ export default function MainLayout({ children }) {
         <div className="app-layout">
             <aside className="app-sidebar">
                 <div className="sidebar-header">
-                    <div className="sidebar-logo">AXA</div>
+                    <img className="sidebar-logo" src="/axa-logo.png" alt="AXA" />
                     <div>
                         <div className="sidebar-title">AXA People</div>
                         <div className="sidebar-subtitle">Mitarbeiter-Management</div>
