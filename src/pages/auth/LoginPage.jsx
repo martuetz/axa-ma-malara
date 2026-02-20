@@ -7,9 +7,9 @@ export default function LoginPage() {
     const [selected, setSelected] = useState(null);
 
     const roles = [
-        { key: 'employee', icon: User, color: 'blue', title: 'Mitarbeiter', desc: 'Lukas Brunner – Frontend Developer' },
-        { key: 'manager', icon: Shield, color: 'green', title: 'Führungskraft', desc: 'David Brunner – Lead Developer' },
-        { key: 'hr', icon: Settings, color: 'red', title: 'HR-Admin', desc: 'Julia Meier – HR Director' },
+        { key: 'employee', icon: User, color: 'blue', title: 'Mitarbeiter', desc: 'Lirim Asipi – Kundenberater Privat- und KMU-Kunden' },
+        { key: 'manager', icon: Shield, color: 'green', title: 'Führungskraft', desc: 'Dario Cavaliere – Verkaufsleiter' },
+        { key: 'hr', icon: Settings, color: 'red', title: 'HR-Admin', desc: 'Stefan Malara – Generalagent' },
     ];
 
     const handleLogin = () => {
@@ -20,7 +20,7 @@ export default function LoginPage() {
         <div className="login-page">
             <div className="login-container">
                 <div className="login-logo">
-                    <img className="login-logo-icon" src="/axa-logo.png" alt="AXA" />
+                    <img className="login-logo-icon" src="/axa-logo.svg" alt="AXA" />
                     <h1>AXA People</h1>
                     <p>Mitarbeiter-Evaluation & Entwicklung</p>
                 </div>
