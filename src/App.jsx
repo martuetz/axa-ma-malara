@@ -6,7 +6,7 @@ import LoginPage from './pages/auth/LoginPage';
 import HRDashboard from './pages/dashboard/HRDashboard';
 import ManagerDashboard from './pages/dashboard/ManagerDashboard';
 import EmployeeDashboard from './pages/dashboard/EmployeeDashboard';
-import OrgOverview from './pages/org/OrgOverview';
+
 import EmployeeDirectory from './pages/org/EmployeeDirectory';
 import EvaluationPage from './pages/evaluation/EvaluationPage';
 import ReviewPage from './pages/review/ReviewPage';
@@ -35,7 +35,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
       <Route path="/dashboard" element={<ProtectedRoute><DashboardRouter /></ProtectedRoute>} />
-      <Route path="/organization" element={<ProtectedRoute allowedRoles={['manager', 'hr']}><OrgOverview /></ProtectedRoute>} />
+
       <Route path="/employees" element={<ProtectedRoute allowedRoles={['manager', 'hr']}><EmployeeDirectory /></ProtectedRoute>} />
       <Route path="/evaluations" element={<ProtectedRoute><EvaluationPage /></ProtectedRoute>} />
       <Route path="/reviews" element={<ProtectedRoute><ReviewPage /></ProtectedRoute>} />

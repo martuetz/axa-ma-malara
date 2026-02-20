@@ -1,21 +1,22 @@
 import { useAuth } from '../../context/AuthContext';
-import { employees, evaluations, annualReviews, enrollments } from '../../data/mockData';
+import { employees, evaluations, annualReviews, teams } from '../../data/mockData';
 import { Users, ClipboardCheck, Calendar, AlertTriangle, ChevronRight } from 'lucide-react';
 
 export default function ManagerDashboard() {
     const { user } = useAuth();
-    // Get team members (employees in same team or department)
-    const teamMembers = employees.filter(e => e.teamId === 'entwicklung' && e.id !== user.id);
+    // Get team members: employees who report to this manager
+    const teamMembers = employees.filter(e => e.reportsTo === user.id);
     const teamEvals = evaluations.filter(e => teamMembers.some(m => m.id === e.employeeId));
     const pendingEvals = teamEvals.filter(e => e.status !== 'completed');
     const teamReviews = annualReviews.filter(r => teamMembers.some(m => m.id === r.employeeId));
     const upcomingReviews = teamReviews.filter(r => r.status === 'scheduled');
+    const managerTeam = teams.find(t => t.leadId === user.id);
 
     return (
         <div>
             <div className="page-header">
                 <h1>Team Dashboard</h1>
-                <p>Übersicht des Teams Softwareentwicklung</p>
+                <p>Übersicht – {managerTeam?.name || 'Mein Team'}</p>
             </div>
 
             <div className="grid grid-4" style={{ marginBottom: 24 }}>

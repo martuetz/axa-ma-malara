@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Users, ClipboardCheck, Calendar, GraduationCap, Building2, LogOut, Bell, ChevronRight, Menu, X, Check, UserCog } from 'lucide-react';
+import { LayoutDashboard, Users, ClipboardCheck, Calendar, GraduationCap, LogOut, Bell, ChevronRight, Menu, X, Check, UserCog } from 'lucide-react';
 
 const navItems = {
     employee: [
@@ -12,7 +12,6 @@ const navItems = {
     ],
     manager: [
         { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-        { to: '/organization', icon: Building2, label: 'Organisation' },
         { to: '/employees', icon: Users, label: 'Mitarbeiter' },
         { to: '/evaluations', icon: ClipboardCheck, label: 'Bewertungen' },
         { to: '/reviews', icon: Calendar, label: 'Jahresgespräche' },
@@ -21,7 +20,6 @@ const navItems = {
     ],
     hr: [
         { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-        { to: '/organization', icon: Building2, label: 'Organisation' },
         { to: '/employees', icon: Users, label: 'Mitarbeiter' },
         { to: '/evaluations', icon: ClipboardCheck, label: 'Bewertungen' },
         { to: '/reviews', icon: Calendar, label: 'Jahresgespräche' },
