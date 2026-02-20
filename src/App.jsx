@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { EmployeeProvider } from './context/EmployeeContext';
 import MainLayout from './components/layout/MainLayout';
 import LoginPage from './pages/auth/LoginPage';
 import HRDashboard from './pages/dashboard/HRDashboard';
@@ -10,6 +11,7 @@ import EmployeeDirectory from './pages/org/EmployeeDirectory';
 import EvaluationPage from './pages/evaluation/EvaluationPage';
 import ReviewPage from './pages/review/ReviewPage';
 import ProgramsPage from './pages/programs/ProgramsPage';
+import UserManagement from './pages/admin/UserManagement';
 import './styles/index.css';
 
 function DashboardRouter() {
@@ -38,6 +40,7 @@ function AppRoutes() {
       <Route path="/evaluations" element={<ProtectedRoute><EvaluationPage /></ProtectedRoute>} />
       <Route path="/reviews" element={<ProtectedRoute><ReviewPage /></ProtectedRoute>} />
       <Route path="/programs" element={<ProtectedRoute><ProgramsPage /></ProtectedRoute>} />
+      <Route path="/user-management" element={<ProtectedRoute allowedRoles={['manager', 'hr']}><UserManagement /></ProtectedRoute>} />
       <Route path="*" element={<Navigate to={isAuthenticated ? '/dashboard' : '/login'} replace />} />
     </Routes>
   );
@@ -47,7 +50,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AppRoutes />
+        <EmployeeProvider>
+          <AppRoutes />
+        </EmployeeProvider>
       </AuthProvider>
     </BrowserRouter>
   );

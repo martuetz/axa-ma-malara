@@ -1,6 +1,7 @@
+import { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Users, ClipboardCheck, Calendar, GraduationCap, Building2, LogOut, Bell, ChevronRight } from 'lucide-react';
+import { LayoutDashboard, Users, ClipboardCheck, Calendar, GraduationCap, Building2, LogOut, Bell, ChevronRight, Menu, X, Check, UserCog } from 'lucide-react';
 
 const navItems = {
     employee: [
@@ -16,6 +17,7 @@ const navItems = {
         { to: '/evaluations', icon: ClipboardCheck, label: 'Bewertungen' },
         { to: '/reviews', icon: Calendar, label: 'Jahresgespräche' },
         { to: '/programs', icon: GraduationCap, label: 'Förderprogramme' },
+        { to: '/user-management', icon: UserCog, label: 'Benutzerverwaltung' },
     ],
     hr: [
         { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -24,6 +26,7 @@ const navItems = {
         { to: '/evaluations', icon: ClipboardCheck, label: 'Bewertungen' },
         { to: '/reviews', icon: Calendar, label: 'Jahresgespräche' },
         { to: '/programs', icon: GraduationCap, label: 'Förderprogramme' },
+        { to: '/user-management', icon: UserCog, label: 'Benutzerverwaltung' },
     ],
 };
 
@@ -33,10 +36,63 @@ const roleLabels = {
     hr: 'HR-Admin',
 };
 
+const initialNotifications = [
+    { id: 1, title: 'Jahresgespräch geplant', message: 'Ihr Jahresgespräch wurde für den 15. März 2026 geplant.', time: 'Vor 2 Std.', read: false },
+    { id: 2, title: 'Neue Bewertung erhalten', message: 'Sie haben eine neue Leistungsbewertung von Ihrem Vorgesetzten erhalten.', time: 'Vor 5 Std.', read: false },
+    { id: 3, title: 'Förderprogramm verfügbar', message: 'Ein neues Förderprogramm "Leadership 2026" ist ab sofort verfügbar.', time: 'Gestern', read: false },
+];
+
 export default function MainLayout({ children }) {
     const { user, logout } = useAuth();
     const location = useLocation();
     const items = navItems[user?.role] || navItems.employee;
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [notifOpen, setNotifOpen] = useState(false);
+    const [notifications, setNotifications] = useState(initialNotifications);
+    const notifRef = useRef(null);
+    const mobileNotifRef = useRef(null);
+
+    const unreadCount = notifications.filter(n => !n.read).length;
+
+    // Close mobile menu on route change
+    useEffect(() => {
+        setMobileMenuOpen(false);
+        setNotifOpen(false);
+    }, [location.pathname]);
+
+    // Close notification dropdown on outside click
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (
+                notifRef.current && !notifRef.current.contains(e.target) &&
+                mobileNotifRef.current && !mobileNotifRef.current.contains(e.target)
+            ) {
+                setNotifOpen(false);
+            }
+            if (
+                notifRef.current && !notifRef.current.contains(e.target) &&
+                !mobileNotifRef.current
+            ) {
+                setNotifOpen(false);
+            }
+            if (
+                mobileNotifRef.current && !mobileNotifRef.current.contains(e.target) &&
+                !notifRef.current
+            ) {
+                setNotifOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const markAsRead = (id) => {
+        setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+    };
+
+    const markAllAsRead = () => {
+        setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+    };
 
     const getPageTitle = () => {
         const path = location.pathname;
@@ -44,9 +100,70 @@ export default function MainLayout({ children }) {
         return item?.label || 'Dashboard';
     };
 
+    const NotificationDropdown = () => (
+        <div className="notification-dropdown">
+            <div className="notification-dropdown-header">
+                <span className="notification-dropdown-title">Benachrichtigungen</span>
+                {unreadCount > 0 && (
+                    <button className="notification-mark-all" onClick={markAllAsRead}>
+                        <Check size={14} />
+                        Alle gelesen
+                    </button>
+                )}
+            </div>
+            <div className="notification-dropdown-list">
+                {notifications.length === 0 ? (
+                    <div className="notification-empty">Keine Benachrichtigungen</div>
+                ) : (
+                    notifications.map(n => (
+                        <div
+                            key={n.id}
+                            className={`notification-item ${n.read ? 'read' : 'unread'}`}
+                            onClick={() => markAsRead(n.id)}
+                        >
+                            <div className="notification-item-dot" />
+                            <div className="notification-item-content">
+                                <div className="notification-item-title">{n.title}</div>
+                                <div className="notification-item-message">{n.message}</div>
+                                <div className="notification-item-time">{n.time}</div>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+
     return (
         <div className="app-layout">
-            <aside className="app-sidebar">
+            {/* Mobile Top Bar */}
+            <div className="mobile-topbar">
+                <div className="mobile-topbar-left">
+                    <img className="mobile-topbar-logo" src="/axa-logo.svg" alt="AXA" />
+                    <span className="mobile-topbar-title">{getPageTitle()}</span>
+                </div>
+                <div className="mobile-topbar-right">
+                    <div className="header-notification" ref={mobileNotifRef} onClick={() => setNotifOpen(!notifOpen)}>
+                        <Bell size={20} />
+                        {unreadCount > 0 && <span className="header-notification-badge">{unreadCount}</span>}
+                        {notifOpen && <NotificationDropdown />}
+                    </div>
+                    <button
+                        className="mobile-menu-toggle"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
+            </div>
+
+            {/* Mobile overlay */}
+            {mobileMenuOpen && (
+                <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)} />
+            )}
+
+            <aside className={`app-sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
                 <div className="sidebar-header">
                     <img className="sidebar-logo" src="/axa-logo.svg" alt="AXA" />
                     <div>
@@ -91,9 +208,10 @@ export default function MainLayout({ children }) {
                         </div>
                     </div>
                     <div className="header-right">
-                        <div className="header-notification">
+                        <div className="header-notification" ref={notifRef} onClick={() => setNotifOpen(!notifOpen)}>
                             <Bell size={20} />
-                            <span className="header-notification-badge">3</span>
+                            {unreadCount > 0 && <span className="header-notification-badge">{unreadCount}</span>}
+                            {notifOpen && <NotificationDropdown />}
                         </div>
                     </div>
                 </header>

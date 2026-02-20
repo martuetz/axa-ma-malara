@@ -7,6 +7,7 @@ export const departments = [
 ];
 
 export const teams = [
+  { id: 'geschaeftsleitung', name: 'Geschäftsleitung', departmentId: 'beratung', leadId: 'emp-01' },
   { id: 'verkaufsleitung', name: 'Verkaufsleitung', departmentId: 'beratung', leadId: 'emp-02' },
   { id: 'kundenberatung', name: 'Kundenberatung', departmentId: 'beratung', leadId: 'emp-02' },
   { id: 'verkaufssupport', name: 'Verkaufssupport', departmentId: 'innendienst', leadId: 'emp-13' },
@@ -15,27 +16,27 @@ export const teams = [
 
 export const employees = [
   // --- Beratung (Advisors) ---
-  { id: 'emp-01', name: 'Stefan Malara', email: 'stefan.malara@axa.ch', position: 'Generalagent', departmentId: 'beratung', teamId: null, role: 'hr', hireDate: '2015-03-01', avatar: 'SM' },
-  { id: 'emp-02', name: 'Dario Cavaliere', email: 'dario.cavaliere@axa.ch', position: 'Verkaufsleiter', departmentId: 'beratung', teamId: 'verkaufsleitung', role: 'manager', hireDate: '2016-06-15', avatar: 'DC' },
-  { id: 'emp-03', name: 'Lirim Asipi', email: 'lirim.asipi@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2018-04-01', avatar: 'LA' },
-  { id: 'emp-04', name: 'Cyrill Ivo Besson', email: 'cyrillivo.besson@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2019-01-10', avatar: 'CB' },
-  { id: 'emp-05', name: 'Ellen Burg', email: 'ellen.burg@axa.ch', position: 'Kundenberaterin', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2019-09-01', avatar: 'EB' },
-  { id: 'emp-06', name: 'Stephan Bürgin', email: 'stephan.buergin@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2017-08-15', avatar: 'SB' },
-  { id: 'emp-07', name: 'Luca Cavaliere', email: 'luca.cavaliere@axa.ch', position: 'Kundenberater', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2020-02-01', avatar: 'LC' },
-  { id: 'emp-08', name: 'Loris Del Grosso', email: 'loris.delgrosso@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2018-11-01', avatar: 'LDG' },
-  { id: 'emp-09', name: 'Roger Lienhard', email: 'roger.lienhard@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2017-05-15', avatar: 'RL' },
-  { id: 'emp-10', name: 'Michael Löber-Einsele', email: 'michael.loeber@axa.ch', position: 'Kundenberater', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2019-03-01', avatar: 'ML' },
-  { id: 'emp-11', name: 'Laura Ottoni', email: 'laura.ottoni@axa.ch', position: 'Kundenberaterin Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2020-07-15', avatar: 'LO' },
-  { id: 'emp-12', name: 'Mirza Ramcilovic', email: 'mirza.ramcilovic@axa.ch', position: 'Kundenberater', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2021-01-10', avatar: 'MR' },
+  { id: 'emp-01', name: 'Stefan Malara', email: 'stefan.malara@axa.ch', position: 'Generalagent', departmentId: 'beratung', teamId: 'geschaeftsleitung', role: 'hr', hireDate: '2015-03-01', avatar: 'SM', reportsTo: null },
+  { id: 'emp-02', name: 'Dario Cavaliere', email: 'dario.cavaliere@axa.ch', position: 'Verkaufsleiter', departmentId: 'beratung', teamId: 'verkaufsleitung', role: 'manager', hireDate: '2016-06-15', avatar: 'DC', reportsTo: 'emp-01' },
+  { id: 'emp-03', name: 'Lirim Asipi', email: 'lirim.asipi@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2018-04-01', avatar: 'LA', reportsTo: 'emp-02' },
+  { id: 'emp-04', name: 'Cyrill Ivo Besson', email: 'cyrillivo.besson@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2019-01-10', avatar: 'CB', reportsTo: 'emp-02' },
+  { id: 'emp-05', name: 'Ellen Burg', email: 'ellen.burg@axa.ch', position: 'Kundenberaterin', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2019-09-01', avatar: 'EB', reportsTo: 'emp-02' },
+  { id: 'emp-06', name: 'Stephan Bürgin', email: 'stephan.buergin@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2017-08-15', avatar: 'SB', reportsTo: 'emp-02' },
+  { id: 'emp-07', name: 'Luca Cavaliere', email: 'luca.cavaliere@axa.ch', position: 'Kundenberater', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2020-02-01', avatar: 'LC', reportsTo: 'emp-02' },
+  { id: 'emp-08', name: 'Loris Del Grosso', email: 'loris.delgrosso@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2018-11-01', avatar: 'LDG', reportsTo: 'emp-02' },
+  { id: 'emp-09', name: 'Roger Lienhard', email: 'roger.lienhard@axa.ch', position: 'Kundenberater Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2017-05-15', avatar: 'RL', reportsTo: 'emp-02' },
+  { id: 'emp-10', name: 'Michael Löber-Einsele', email: 'michael.loeber@axa.ch', position: 'Kundenberater', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2019-03-01', avatar: 'ML', reportsTo: 'emp-02' },
+  { id: 'emp-11', name: 'Laura Ottoni', email: 'laura.ottoni@axa.ch', position: 'Kundenberaterin Privat- und KMU-Kunden', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2020-07-15', avatar: 'LO', reportsTo: 'emp-02' },
+  { id: 'emp-12', name: 'Mirza Ramcilovic', email: 'mirza.ramcilovic@axa.ch', position: 'Kundenberater', departmentId: 'beratung', teamId: 'kundenberatung', role: 'employee', hireDate: '2021-01-10', avatar: 'MR', reportsTo: 'emp-02' },
 
   // --- Innendienst (Back Office) ---
-  { id: 'emp-13', name: 'Sara Cheira Leminhos', email: 'sara.leminhos@axa.ch', position: 'Leiterin Innendienst', departmentId: 'innendienst', teamId: null, role: 'manager', hireDate: '2016-09-01', avatar: 'SCL' },
-  { id: 'emp-14', name: 'Luis Filipe Couto Pereira', email: 'filipe.pereira@axa.ch', position: 'Verkaufssupport Privatkunden', departmentId: 'innendienst', teamId: 'verkaufssupport', role: 'employee', hireDate: '2018-01-15', avatar: 'LP' },
-  { id: 'emp-15', name: 'Giovanni Grado', email: 'giovanni.grado@axa.ch', position: 'Verkaufssupport Privatkunden', departmentId: 'innendienst', teamId: 'verkaufssupport', role: 'employee', hireDate: '2019-06-01', avatar: 'GG' },
-  { id: 'emp-16', name: 'Dennis Haakman', email: 'dennis.haakman@axa.ch', position: 'Verkaufssupport Privatkunden', departmentId: 'innendienst', teamId: 'verkaufssupport', role: 'employee', hireDate: '2020-04-01', avatar: 'DH' },
-  { id: 'emp-17', name: 'Marisa Niedermann', email: 'marisa.niedermann@axa.ch', position: 'Innendienstmitarbeiterin', departmentId: 'innendienst', teamId: 'administration', role: 'employee', hireDate: '2018-08-01', avatar: 'MN' },
-  { id: 'emp-18', name: 'Chiara Haakman', email: 'chiara.haakman@axa.ch', position: 'Lernende', departmentId: 'innendienst', teamId: 'administration', role: 'employee', hireDate: '2024-08-01', avatar: 'CH' },
-  { id: 'emp-19', name: 'Jana Heidi Roos', email: 'jana.roos@axa.ch', position: 'Lernende', departmentId: 'innendienst', teamId: 'administration', role: 'employee', hireDate: '2024-08-01', avatar: 'JR' },
+  { id: 'emp-13', name: 'Sara Cheira Leminhos', email: 'sara.leminhos@axa.ch', position: 'Leiterin Innendienst', departmentId: 'innendienst', teamId: 'geschaeftsleitung', role: 'manager', hireDate: '2016-09-01', avatar: 'SCL', reportsTo: 'emp-01' },
+  { id: 'emp-14', name: 'Luis Filipe Couto Pereira', email: 'filipe.pereira@axa.ch', position: 'Verkaufssupport Privatkunden', departmentId: 'innendienst', teamId: 'verkaufssupport', role: 'employee', hireDate: '2018-01-15', avatar: 'LP', reportsTo: 'emp-13' },
+  { id: 'emp-15', name: 'Giovanni Grado', email: 'giovanni.grado@axa.ch', position: 'Verkaufssupport Privatkunden', departmentId: 'innendienst', teamId: 'verkaufssupport', role: 'employee', hireDate: '2019-06-01', avatar: 'GG', reportsTo: 'emp-13' },
+  { id: 'emp-16', name: 'Dennis Haakman', email: 'dennis.haakman@axa.ch', position: 'Verkaufssupport Privatkunden', departmentId: 'innendienst', teamId: 'verkaufssupport', role: 'employee', hireDate: '2020-04-01', avatar: 'DH', reportsTo: 'emp-13' },
+  { id: 'emp-17', name: 'Marisa Niedermann', email: 'marisa.niedermann@axa.ch', position: 'Innendienstmitarbeiterin', departmentId: 'innendienst', teamId: 'administration', role: 'employee', hireDate: '2018-08-01', avatar: 'MN', reportsTo: 'emp-13' },
+  { id: 'emp-18', name: 'Chiara Haakman', email: 'chiara.haakman@axa.ch', position: 'Lernende', departmentId: 'innendienst', teamId: 'administration', role: 'employee', hireDate: '2024-08-01', avatar: 'CH', reportsTo: 'emp-13' },
+  { id: 'emp-19', name: 'Jana Heidi Roos', email: 'jana.roos@axa.ch', position: 'Lernende', departmentId: 'innendienst', teamId: 'administration', role: 'employee', hireDate: '2024-08-01', avatar: 'JR', reportsTo: 'emp-13' },
 ];
 
 export const evaluations = [
