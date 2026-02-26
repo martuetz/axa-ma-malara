@@ -31,7 +31,7 @@ const navItems = {
 const roleLabels = {
     employee: 'Mitarbeiter',
     manager: 'Führungskraft',
-    hr: 'HR-Admin',
+    hr: 'Generalagent',
 };
 
 const initialNotifications = [

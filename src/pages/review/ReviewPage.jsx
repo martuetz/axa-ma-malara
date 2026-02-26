@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { employees, annualReviews, goalStatusLabels } from '../../data/mockData';
 import { Calendar, CheckCircle, Clock, FileText, Save, Plus, Target } from 'lucide-react';
+import NewReviewModal from './NewReviewModal';
 
 export default function ReviewPage() {
+    const navigate = useNavigate();
     const { user } = useAuth();
     const isManager = user.role === 'manager' || user.role === 'hr';
     const relevantReviews = isManager
@@ -12,6 +15,12 @@ export default function ReviewPage() {
 
     const [activeTab, setActiveTab] = useState('overview');
     const [selectedReview, setSelectedReview] = useState(null);
+    const [isNewReviewModalOpen, setIsNewReviewModalOpen] = useState(false);
+
+    const handleNewReviewSubmit = (newReview) => {
+        annualReviews.unshift(newReview);
+        setIsNewReviewModalOpen(false);
+    };
 
     return (
         <div>
@@ -22,7 +31,9 @@ export default function ReviewPage() {
                         <p>{isManager ? 'Verwalten Sie die Jahresgespräche Ihres Teams' : 'Ihre Jahresgespräche im Überblick'}</p>
                     </div>
                     {isManager && (
-                        <button className="btn btn-primary"><Plus size={18} /> Neues Gespräch planen</button>
+                        <button className="btn btn-primary" onClick={() => setIsNewReviewModalOpen(true)}>
+                            <Plus size={18} /> Neues Gespräch planen
+                        </button>
                     )}
                 </div>
             </div>
@@ -38,7 +49,7 @@ export default function ReviewPage() {
                         const emp = employees.find(e => e.id === review.employeeId);
                         const mgr = employees.find(e => e.id === review.managerId);
                         return (
-                            <div className="card" key={review.id} onClick={() => setSelectedReview(review)}
+                            <div className="card" key={review.id} onClick={() => navigate(`/reviews/${review.id}`)}
                                 style={{ cursor: 'pointer' }}>
                                 <div className="card-header">
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -183,6 +194,13 @@ export default function ReviewPage() {
                     </div>
                 </div>
             )}
+
+            <NewReviewModal
+                isOpen={isNewReviewModalOpen}
+                onClose={() => setIsNewReviewModalOpen(false)}
+                onSubmit={handleNewReviewSubmit}
+                user={user}
+            />
         </div>
     );
 }

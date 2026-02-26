@@ -247,7 +247,7 @@ export default function EmployeeDirectory() {
                                         onChange={e => handleFieldChange('role', e.target.value)}>
                                         <option value="employee">Mitarbeiter</option>
                                         <option value="manager">Führungskraft</option>
-                                        <option value="hr">HR-Admin</option>
+                                        <option value="hr">Generalagent</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

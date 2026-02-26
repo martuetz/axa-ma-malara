@@ -86,7 +86,20 @@ export const annualReviews = [
     ],
     developmentWishes: 'Möchte in Richtung Key Account Management wachsen',
     feedback: 'Sehr gute Zusammenarbeit, offen für Feedback',
-    signedByEmployee: true, signedByManager: true
+    signedByEmployee: true, signedByManager: true,
+    empEval: {
+      zielerreichungsgrad: { rating: 'good', text: 'Ziele wurden meistenteils sehr erfolgreich umgesetzt.' },
+      wissen: { rating: 'good', text: 'Fühle mich sicher im aktuellen Arbeitsbereich.' },
+      vorgesetzter: { rating: 'neutral', text: 'Kommunikation könnte noch öfter stattfinden.' },
+      beruf: { rating: 'good', text: 'Macht viel Freude.' },
+      strategie: { rating: 'good', text: 'Ist mir bestens bekannt.' },
+    },
+    mgrEval: {
+      ziele: 'Fokus auf Neukundengewinnung im Q1 2026 stärken.',
+      ergaenzungen: 'Sehr positive Entwicklung, wir arbeiten gemeinsam an den neuen Zielen.',
+      arbeitsergebnis: { svp: '+', ngAe: '+', ablaufquote: '++', annullationsquote: '+', neugeschaefte: '+', produktionLeben: '++', produktionHealth: '+', provisionen: '++' },
+      verhalten: { eigenverantwortung: '++', fachkompetenz: '+', belastbarkeit: '+/-', einsatz: '+', kommunikation: '++', konfliktfaehigkeit: '+', teamfaehigkeit: '++', integration: '+', arbeitstechnik: '+', zuverlaessigkeit: '++', organisation: '+', prioritaet: '+' }
+    }
   },
   {
     id: 'rev-02', employeeId: 'emp-06', managerId: 'emp-02', year: 2025, status: 'scheduled', scheduledDate: '2026-01-15', completedDate: null,

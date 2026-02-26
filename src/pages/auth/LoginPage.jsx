@@ -9,7 +9,7 @@ export default function LoginPage() {
     const roles = [
         { key: 'employee', icon: User, color: 'blue', title: 'Mitarbeiter', desc: 'Lirim Asipi – Kundenberater Privat- und KMU-Kunden' },
         { key: 'manager', icon: Shield, color: 'green', title: 'Führungskraft', desc: 'Dario Cavaliere – Verkaufsleiter' },
-        { key: 'hr', icon: Settings, color: 'red', title: 'HR-Admin', desc: 'Stefan Malara – Generalagent' },
+        { key: 'hr', icon: Settings, color: 'red', title: 'Generalagent', desc: 'Stefan Malara – Generalagent' },
     ];
 
     const handleLogin = () => {

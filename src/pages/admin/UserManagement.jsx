@@ -7,7 +7,7 @@ import { Search, Shield, UserCog, Power, Check, Filter } from 'lucide-react';
 const roleLabels = {
     employee: 'Mitarbeiter',
     manager: 'Führungskraft',
-    hr: 'HR-Admin',
+    hr: 'Generalagent',
 };
 
 const roleBadgeClass = {
@@ -116,7 +116,7 @@ export default function UserManagement() {
                             <option value="all">Alle Rollen</option>
                             <option value="employee">Mitarbeiter</option>
                             <option value="manager">Führungskraft</option>
-                            <option value="hr">HR-Admin</option>
+                            <option value="hr">Generalagent</option>
                         </select>
                         <select className="form-select" style={{ width: 140 }}
                             value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
@@ -178,7 +178,7 @@ export default function UserManagement() {
                                                 >
                                                     <option value="employee">Mitarbeiter</option>
                                                     <option value="manager">Führungskraft</option>
-                                                    <option value="hr">HR-Admin</option>
+                                                    <option value="hr">Generalagent</option>
                                                 </select>
                                             ) : (
                                                 <span className={`badge ${roleBadgeClass[emp.role] || 'badge-gray'}`}>
